@@ -1,0 +1,79 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Kertaus_Promillet.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Kertaus_Promillet.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Kertaus_Promillet">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <StackPanel Margin="20" Width="150" HorizontalAlignment="Left">
+        
+        <StackPanel HorizontalAlignment="Left">
+            <Label 
+                Content="Valiste sukupuoli"
+                Margin="10"/>
+            <ComboBox 
+                SelectedIndex="{Binding sukupuoli}"
+                Margin="10">
+                <ComboBoxItem>
+                    <Label Content="Mies"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="Nainen"/>
+                </ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        
+        <StackPanel HorizontalAlignment="Left">
+            <Label 
+                Content="Valitse alkoholi"
+                Margin="10"/>
+            <ComboBox 
+                ItemsSource="{Binding alkoholiJuomatList}"
+                SelectedIndex="{Binding alkoholiJuomaSelectedIndex}"
+                Margin="10"/>
+            <NumericUpDown 
+                Value="{Binding alkoholiJuomaPromile}"
+                IsEnabled="{Binding alkoholiJuomaPromileIsEnabled}"
+                Margin="10"
+                Increment="0.1"/>
+        </StackPanel>
+        
+        <StackPanel HorizontalAlignment="Left">
+            <Label 
+                Content="Kirjoita juomamäärä"
+                Margin="10"/>
+            <NumericUpDown 
+                Value="{Binding juomatMäärä}"
+                Margin="10"
+                Increment="0.1"
+                Minimum="0"/>
+        </StackPanel>
+        
+        <StackPanel HorizontalAlignment="Left">
+            <Label 
+                Content="Kirjoita montako tuntia ovat menneet jo"
+                Margin="10"/>
+            <NumericUpDown 
+                Value="{Binding tunti}"
+                Margin="10"
+                Increment="1"
+                Minimum="0"/>
+        </StackPanel>
+        
+        
+        <Button 
+            Content="Laske"
+            Command="{Binding laske}"/>
+    </StackPanel>
+
+</Window>
