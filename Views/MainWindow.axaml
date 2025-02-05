@@ -15,7 +15,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <StackPanel Margin="20" Width="150" HorizontalAlignment="Left">
+    <WrapPanel >
         
         <StackPanel HorizontalAlignment="Left">
             <Label 
@@ -35,6 +35,16 @@
         
         <StackPanel HorizontalAlignment="Left">
             <Label 
+                Content="Kirjoita paino"
+                Margin="10"/>
+            <NumericUpDown 
+                Value="{Binding paino}"
+                Margin="10"
+                Increment="0.1"/>
+        </StackPanel>
+        
+        <StackPanel HorizontalAlignment="Left">
+            <Label 
                 Content="Valitse alkoholi"
                 Margin="10"/>
             <ComboBox 
@@ -42,15 +52,15 @@
                 SelectedIndex="{Binding alkoholiJuomaSelectedIndex}"
                 Margin="10"/>
             <NumericUpDown 
-                Value="{Binding alkoholiJuomaPromile}"
-                IsEnabled="{Binding alkoholiJuomaPromileIsEnabled}"
+                Value="{Binding alkoholiprosenttia}"
+                IsEnabled="{Binding alkoholiprosenttiaIsEnabled}"
                 Margin="10"
                 Increment="0.1"/>
         </StackPanel>
         
         <StackPanel HorizontalAlignment="Left">
             <Label 
-                Content="Kirjoita juomamäärä"
+                Content="Kirjoita juomamäärä (Litraa)"
                 Margin="10"/>
             <NumericUpDown 
                 Value="{Binding juomatMäärä}"
@@ -73,7 +83,12 @@
         
         <Button 
             Content="Laske"
-            Command="{Binding laske}"/>
-    </StackPanel>
+            Command="{Binding laske}"
+            Margin="15"/>
+        
+        <TextBlock 
+            Text="{Binding res}"
+            Margin="15"/>
+    </WrapPanel>
 
 </Window>
